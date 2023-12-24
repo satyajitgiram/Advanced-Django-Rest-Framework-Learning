@@ -186,3 +186,10 @@ EMAIL_PORT = 2525
 DEFAULT_FROM_EMAIL = 'yourmail@domain.com'
 
 CELERY_BROKER_URL = 'redis://localhost:6379/1'
+CELERY_BEAT_SCHEDULE = {
+    'notify-customers': {
+        'task': 'playground.tasks.notify_customers',
+        'schedule': timedelta(seconds=10),
+        'args': ['Hello World!'],
+    },
+}
