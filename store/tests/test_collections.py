@@ -2,6 +2,8 @@ from rest_framework.test import APIClient
 from django.contrib.auth.models import User
 from rest_framework import status
 import pytest
+from store.models import Collection
+from model_bakery import baker
 
 
 
@@ -27,7 +29,7 @@ class TestCreateCollection:
 
         #Arange
 
-        #Asert 
+        #Act 
         client = APIClient()
         response =  client.post('/store/collections/', {'title':'a'})
 
@@ -39,7 +41,7 @@ class TestCreateCollection:
         response = create_collection({'title':'a'})
 
         assert response.status_code == status.HTTP_403_FORBIDDEN
-        
+
 
     def test_if_data_is_invalid_return_400(self, authenticate, create_collection):
         authenticate(is_staff=True)
@@ -54,3 +56,21 @@ class TestCreateCollection:
         response = create_collection({'title':'a'})
         assert response.status_code == status.HTTP_201_CREATED
         assert response.data['id'] > 0
+
+
+@pytest.mark.django_db
+class TestRetrieveCollection:
+    def test_if_collection_exists_returns_200(self, api_client):
+        #Arrange
+        collection = baker.make(Collection)
+
+        #Act
+        response = api_client.get(f'/store/collections/{collection.id}/')
+
+        #Assert
+        assert response.status_code == status.HTTP_200_OK
+        assert response.data == {
+            'id': collection.id, 
+            'title': collection.title, 
+            'products_count':0
+        }
