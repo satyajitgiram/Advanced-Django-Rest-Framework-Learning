@@ -20,3 +20,13 @@ Monitoring Celery tasks - (Flower)
 ```bash
 celery storefront -A flower
 ```
+
+Automated testing
+```bash
+pytest
+```
+
+Automated continuous testing 
+```bash
+ptw  - (short for pytest watch)
+```
