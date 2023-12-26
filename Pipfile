@@ -20,6 +20,7 @@ celery = "*"
 redis = "*"
 flower = "*"
 model-bakery = "*"
+locust = "*"
 
 [dev-packages]
 pytest = "*"

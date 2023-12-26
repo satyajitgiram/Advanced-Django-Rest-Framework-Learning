@@ -30,3 +30,8 @@ Automated continuous testing
 ```bash
 ptw  - (short for pytest watch)
 ```
+
+Run Locust to test performance 
+```bash
+locust -f locustfiles/browse_products.py
+```
