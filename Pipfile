@@ -21,6 +21,7 @@ redis = "*"
 flower = "*"
 model-bakery = "*"
 locust = "*"
+django-silk = "*"
 
 [dev-packages]
 pytest = "*"

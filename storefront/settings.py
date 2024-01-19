@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'djoser',
+    'silk',
     'playground',
     'debug_toolbar',
     'store',
@@ -62,6 +63,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if DEBUG:
+    MIDDLEWARE += ['silk.middleware.SilkyMiddleware']
+
 
 INTERNAL_IPS = [
     # ...
@@ -180,8 +185,8 @@ SIMPLE_JWT = {
 
 EMAIL_BACKEND = 'django.core.email.backends.smtp.EmailBackend'
 EMAIL_HOST = 'localhost'
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'HOST_USER'
+EMAIL_HOST_PASSWORD = 'HOST_PASSWORD'
 EMAIL_PORT = 2525
 DEFAULT_FROM_EMAIL = 'yourmail@domain.com'
 
